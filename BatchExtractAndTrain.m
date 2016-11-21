@@ -31,6 +31,20 @@ for i=1:length(var.stego_algo)
         stego_size_file{(i-1)*length(var.stego_payload)+j}=[outputdir,'/',input.image_type,'_',var.stego_algo{i},'_',var.stego_payload{j},'_imageSize.ndm'];
     end
 end
+
+varnum1=length(var.stego_algo)*length(var.stego_payload);
+%----------------stego2----------------------
+for i=1:length(var.stego_algo2)
+    for j=1:length(var.stego_payload2)
+        stego_img_path{varnum1+(i-1)*length(var.stego_payload2)+j}=[input.image_path,input.image_type,'/',input.image_type,'_',var.stego_algo2{i},'_',var.stego_payload2{j},'/'];
+        stego_feature_file{varnum1+(i-1)*length(var.stego_payload2)+j}=[outputdir,'/',input.image_type,'_',var.stego_algo2{i},'_',var.stego_payload2{j},'_feature.ndm'];
+        if(strfind(input.image_type,'jpg'))
+            stego_quantable_file{varnum1+(i-1)*length(var.stego_payload2)+j}=[outputdir,'/',input.image_type,'_',var.stego_algo2{i},'_',var.stego_payload2{j},'_QTData.ndm'];
+        end
+        stego_size_file{varnum1+(i-1)*length(var.stego_payload2)+j}=[outputdir,'/',input.image_type,'_',var.stego_algo2{i},'_',var.stego_payload2{j},'_imageSize.ndm'];
+    end
+end
+
 %----------------model file------------------
 mdl_save_path=[outputdir,'/',input.image_type,'.mdl'];
 
